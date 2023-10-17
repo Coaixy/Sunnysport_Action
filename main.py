@@ -13,20 +13,20 @@ minMileage = int(os.environ["MINMILEAGE"])
 
 header = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
-    'Host': 'hdu.sunnysport.org.cn',
+    'Host': 'jhc.sunnysport.org.cn',
     'Connection': 'keep-alive',
     'Pragma': 'no-cache',
     'Cache-Control': 'no-cache',
     'Upgrade-Insecure-Requests': '1',
-    'Origin': 'http://hdu.sunnysport.org.cn',
+    'Origin': 'http://jhc.sunnysport.org.cn',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Referer': 'http://hdu.sunnysport.org.cn/login/',
+    'Referer': 'http://jhc.sunnysport.org.cn/login/',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'zh-CN,zh;q=0.9'
 }
 
 session = httpx.Client()
-r = session.get('http://hdu.sunnysport.org.cn/login/',headers=header)
+r = session.get('http://jhc.sunnysport.org.cn/login/',headers=header)
 # 下面是为了应对set-cookie无效所搞的无奈之举 所以实际上也没有必要使用Client了
 header['Cookie'] = re.match('(sessionid=.*?);',r.headers.get('set-cookie')).group(1)
 print("complete")
@@ -38,11 +38,11 @@ loginData = {
     'password': password
 }
 
-r = session.post('http://hdu.sunnysport.org.cn/login/',headers=header,data=loginData,allow_redirects=False)
+r = session.post('http://jhc.sunnysport.org.cn/login/',headers=header,data=loginData,allow_redirects=False)
 header['Cookie'] = re.match('(sessionid=.*?);',r.headers.get('set-cookie')).group(1)
 
 # 拿数据
-totalRecord = session.get('http://hdu.sunnysport.org.cn/runner/data/speed.json',headers=header).json()
+totalRecord = session.get('http://jhc.sunnysport.org.cn/runner/data/speed.json',headers=header).json()
 print(totalRecord)
 
 # 因为懒得写正则 所以目前的有效次数和有效里程都是从总的数据里直接算的
