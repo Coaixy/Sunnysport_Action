@@ -86,6 +86,6 @@ if __name__ == '__main__':
             'title': '阳光长跑记录已更新',
             'desp': desp
         }
-        httpx.post('https://sctapi.ftqq.com/{}.send'.format(SendKey),data=msg2send)
+        requests.post('https://sctapi.ftqq.com/{}.send'.format(SendKey),data=msg2send)
 
 
