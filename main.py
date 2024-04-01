@@ -4,6 +4,7 @@ import requests
 import time
 import re
 
+
 # CONFIG PART =====================================
 uid = os.environ["UID"]
 password = os.environ["PASSWORD"]
